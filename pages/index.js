@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
+  const [wordsInput, setWordsInput] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -14,7 +14,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text: animalInput }),
+        body: JSON.stringify({ text: wordsInput }),
       });
 
       const data = await response.json();
@@ -23,7 +23,7 @@ export default function Home() {
       }
 
       setResult(data.result);
-      setAnimalInput("");
+      setwordsInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -46,8 +46,8 @@ export default function Home() {
             type="text"
             name="text"
             placeholder="Enter a phrase or word in English"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+            value={wordsInput}
+            onChange={(e) => setWordsInput(e.target.value)}
           />
           <input type="submit" value="Generate Kana" />
         </form>

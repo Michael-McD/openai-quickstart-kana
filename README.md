@@ -1,6 +1,6 @@
 # OpenAI API Quickstart - Node.js example app
 
-This is an example foreign language translator name generator app used in the OpenAI API [quickstart tutorial](https://platform.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+This is an example foreign language translator name generator app used in the OpenAI API [quickstart tutorial](https://platform.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/).
 
 Text box that says "Enter a phrase or word in English" with an icon of a Japanese Kanji character
 
@@ -14,7 +14,7 @@ Text box that says "Enter a phrase or word in English" with an icon of a Japanes
 3. Navigate into the project directory
 
    ```bash
-   $ cd openai-quickstart-kanji
+   $ cd openai-quickstart-kana
    ```
 
 4. Install the requirements
@@ -25,7 +25,7 @@ Text box that says "Enter a phrase or word in English" with an icon of a Japanes
 
 5. Make a copy of the example environment variables file
 
-   On Linux systems: 
+   On Linux  or Mac systems: 
    ```bash
    $ cp .env.example .env
    ```
@@ -33,7 +33,7 @@ Text box that says "Enter a phrase or word in English" with an icon of a Japanes
    ```powershell
    $ copy .env.example .env
    ```
-6. Add your [API key](https://platform.openai.com/account/api-keys) to the newly created `.env` file
+6. Add your [API key](https://platform.openai.com/account/api-keys) to the newly created `.env` file. Or better still add it as an environment variable and use that in the .env file (avoid any possibility of deploying it to a public environment).
 
 7. Run the app
 
