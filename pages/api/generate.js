@@ -1,9 +1,10 @@
 import { Configuration, OpenAIApi } from "openai";
 
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
+const openAI = new OpenAIApi(configuration);
 
 export default async function (req, res) {
   if (!configuration.apiKey) {
@@ -26,10 +27,9 @@ export default async function (req, res) {
   }
 
   try {
-    const completion = await openai.createCompletion({
+    const completion = await openAI.chat.completions.create({
       model: "gpt-3.5-turbo",
-      prompt: generatePrompt(Phrase),
-      temperature: 0.6,
+      messages:  [{"role": "user", "content": `Translate the following into Japanese: "hello"`}]
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {
@@ -48,15 +48,9 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(Phrase) {
+function generateMessage(Phrase) {
   const capitalizedPhrase =
     Phrase[0].toUpperCase() + Phrase.slice(1).toLowerCase();
-  return `Suggest a translation into Japanese using only Hiragana and Katakana.
-
-Phrase: love 
-Translation: あい
-Phrase: Cream
-Translation: クリーム
-Phrase: ${capitalizedPhrase}
-Translation:`;
+  return [{"role": "user", "content": `Translate the following into Japanese: "${capitalizedPhrase}"`}];
 }
+

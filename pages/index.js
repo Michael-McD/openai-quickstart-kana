@@ -23,7 +23,7 @@ export default function Home() {
       }
 
       setResult(data.result);
-      setwordsInput("");
+      setWordsInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
