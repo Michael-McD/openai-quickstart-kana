@@ -1,20 +1,20 @@
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI  from "openai";
 
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openAI = new OpenAIApi(configuration);
+// const configuration = new Configuration({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+const openAI =  new OpenAI();
 
 export default async function (req, res) {
-  if (!configuration.apiKey) {
-    res.status(500).json({
-      error: {
-        message: "OpenAI API key not configured, please follow instructions in README.md",
-      }
-    });
-    return;
-  }
+  // if (!configuration.apiKey) {
+  //   res.status(500).json({
+  //     error: {
+  //       message: "OpenAI API key not configured, please follow instructions in README.md",
+  //     }
+  //   });
+  //   return;
+  // }
 
   const Phrase = req.body.text || '';
   if (Phrase.trim().length === 0) {
@@ -28,10 +28,10 @@ export default async function (req, res) {
 
   try {
     const completion = await openAI.chat.completions.create({
+      messages: [{"role": "user", "content": "translate the following to Japanese: hello"}],
       model: "gpt-3.5-turbo",
-      messages:  [{"role": "user", "content": `Translate the following into Japanese: "hello"`}]
     });
-    res.status(200).json({ result: completion.data.choices[0].text });
+    res.status(200).json({ result: completion.choices[0].message.content });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
