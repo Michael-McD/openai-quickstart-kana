@@ -1,23 +1,10 @@
 import OpenAI  from "openai";
 
-
-// const configuration = new Configuration({
-//   apiKey: process.env.OPENAI_API_KEY,
-// });
 const openAI =  new OpenAI();
 
 export default async function (req, res) {
-  // if (!configuration.apiKey) {
-  //   res.status(500).json({
-  //     error: {
-  //       message: "OpenAI API key not configured, please follow instructions in README.md",
-  //     }
-  //   });
-  //   return;
-  // }
-
-  const Phrase = req.body.text || '';
-  if (Phrase.trim().length === 0) {
+  const phrase = req.body.text || '';
+  if (phrase.trim().lengt === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid word or phrase",
@@ -28,7 +15,7 @@ export default async function (req, res) {
 
   try {
     const completion = await openAI.chat.completions.create({
-      messages: [{"role": "user", "content": "translate the following to Japanese: hello"}],
+      messages: generateMessage(phrase),
       model: "gpt-3.5-turbo",
     });
     res.status(200).json({ result: completion.choices[0].message.content });
@@ -48,9 +35,9 @@ export default async function (req, res) {
   }
 }
 
-function generateMessage(Phrase) {
+function generateMessage(phrase) {
   const capitalizedPhrase =
-    Phrase[0].toUpperCase() + Phrase.slice(1).toLowerCase();
-  return [{"role": "user", "content": `Translate the following into Japanese: "${capitalizedPhrase}"`}];
+    phrase[0].toUpperCase() + phrase.slice(1).toLowerCase();
+  return [{"role": "user", "content": `Translate the following using hiragana and katakana: ${capitalizedPhrase}`}];
 }
 

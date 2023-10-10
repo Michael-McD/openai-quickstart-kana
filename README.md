@@ -1,9 +1,9 @@
-# OpenAI API Quickstart - Node.js example app
+# OpenAI API Quickstart - Node.js modified to translate English into Japanese
+
+### Translates into kana i.e. hiragana and katakana wihtout using Kanji characters.  Usefullif one is just learning to pronounce japanese words and phrases.
+
 
 This is an example foreign language translator name generator app used in the OpenAI API [quickstart tutorial](https://platform.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/).
-
-Text box that says "Enter a phrase or word in English" with an icon of a Japanese Kanji character
-
 
 ## Setup
 
