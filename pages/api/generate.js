@@ -16,7 +16,8 @@ export default async function (req, res) {
   try {
     const completion = await openAI.chat.completions.create({
       messages: generateMessage(phrase),
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
+      temperature: 0
     });
     res.status(200).json({ result: completion.choices[0].message.content });
   } catch(error) {
@@ -38,6 +39,6 @@ export default async function (req, res) {
 function generateMessage(phrase) {
   const capitalizedPhrase =
     phrase[0].toUpperCase() + phrase.slice(1).toLowerCase();
-  return [{"role": "user", "content": `Translate the following using hiragana and katakana: ${capitalizedPhrase}`}];
+  return [{"role": "user", "content": `Translate the following using hiragana / katakana: ${capitalizedPhrase}`}];
 }
 
